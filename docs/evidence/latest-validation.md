@@ -10,7 +10,7 @@ Não extrapole dados sintéticos para a RNDS, pessoas, serviços ou valor clíni
 | Campo | Valor observado |
 | --- | --- |
 | Data/hora UTC | `2026-08-30T02:25:18Z` |
-| Commit Git | `A_REGISTRAR_APOS_COMMIT_DE_IMPLEMENTACAO` |
+| Commit Git | implementação validada em `86d70e50a9945ecb63296ad6ed9f793f25252e42`; este registro é o commit documental imediatamente seguinte |
 | Versão do protocolo/contrato | protocolo documentado nesta revisão; `rnds-lab-contract/1.0.0` |
 | Python / plataforma | CPython `3.11.15` e `3.12.13`; Windows 11 `10.0.26200`; Intel i7-1255U, 10 núcleos/12 processadores lógicos, 31,7 GiB RAM |
 | `uv.lock` (SHA-256) | `b942ef07054a3f54dc22bb1f0dce759a88ec45f9bcab3b0aa3f1ae9b3815ac13` |
