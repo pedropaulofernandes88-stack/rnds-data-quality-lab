@@ -30,13 +30,13 @@ dependencies = [
   # NumPy 2.5 passou a distribuir stubs com sintaxe 3.12; o projeto mantém
   # alvo MyPy 3.11 e suporta ambos os runtimes da matriz de CI.
   "numpy>=2,<2.5",
-  "plotly>=6,<7",
+  "plotly>=6,<8",
   "polars>=1.33,<2",
   "pyarrow>=21,<30",
   "pydantic>=2.11,<3",
   "pytz>=2025.2",
   "pyyaml>=6,<7",
-  "rich>=14,<15",
+  "rich>=14,<16",
   "streamlit>=1.48,<2",
   "typer>=0.16,<1",
   "uvicorn>=0.35,<1",
@@ -55,7 +55,7 @@ rnds-lab = "rnds_data_lab.cli:app"
 dev = [
   "hypothesis>=6.138,<7",
   "httpx2>=2.12,<3",
-  "mypy>=1.17,<2",
+  "mypy>=1.17,<3",
   "pip-audit>=2.9,<3",
   "pytest>=9.0.3,<10",
   "pytest-cov>=6.2,<8",
