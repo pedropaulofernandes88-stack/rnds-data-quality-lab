@@ -1,0 +1,113 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "rnds-data-quality-lab"
+version = "0.1.0"
+description = "Laboratório reproduzível de qualidade, interoperabilidade e analytics RNDS/FHIR"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { file = "LICENSE" }
+authors = [{ name = "Pedro Paulo Fernandes" }]
+keywords = ["RNDS", "FHIR", "health-data", "data-quality", "Brazil"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Healthcare Industry",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Scientific/Engineering :: Information Analysis",
+]
+
+dependencies = [
+  "duckdb>=1.3,<2",
+  "fastapi>=0.116,<1",
+  "httpx>=0.28,<1",
+  "jsonschema>=4.25,<5",
+  # NumPy 2.5 passou a distribuir stubs com sintaxe 3.12; o projeto mantém
+  # alvo MyPy 3.11 e suporta ambos os runtimes da matriz de CI.
+  "numpy>=2,<2.5",
+  "plotly>=6,<7",
+  "polars>=1.33,<2",
+  "pyarrow>=21,<30",
+  "pydantic>=2.11,<3",
+  "pytz>=2025.2",
+  "pyyaml>=6,<7",
+  "rich>=14,<15",
+  "streamlit>=1.48,<2",
+  "typer>=0.16,<1",
+  "uvicorn>=0.35,<1",
+]
+
+[project.urls]
+Homepage = "https://github.com/pedropaulofernandes88-stack/rnds-data-quality-lab"
+Repository = "https://github.com/pedropaulofernandes88-stack/rnds-data-quality-lab"
+Issues = "https://github.com/pedropaulofernandes88-stack/rnds-data-quality-lab/issues"
+Documentation = "https://github.com/pedropaulofernandes88-stack/rnds-data-quality-lab#readme"
+
+[project.scripts]
+rnds-lab = "rnds_data_lab.cli:app"
+
+[dependency-groups]
+dev = [
+  "hypothesis>=6.138,<7",
+  "httpx2>=2.12,<3",
+  "mypy>=1.17,<2",
+  "pip-audit>=2.9,<3",
+  "pytest>=9.0.3,<10",
+  "pytest-cov>=6.2,<8",
+  "pytest-timeout>=2.4,<3",
+  "ruff>=0.12,<1",
+  "types-pyyaml>=6.0.12,<7",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/rnds_data_lab"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"contracts/fhir_bundle.schema.json" = "rnds_data_lab/contracts/fhir_bundle.schema.json"
+"contracts/rnds_mapping.yaml" = "rnds_data_lab/contracts/rnds_mapping.yaml"
+"data/sources.yml" = "rnds_data_lab/data/sources.yml"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "RUF", "S"]
+ignore = ["S101"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = ["S101", "S105", "S106"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+warn_unused_ignores = true
+show_error_codes = true
+ignore_missing_imports = true
+mypy_path = "src"
+
+[tool.pytest.ini_options]
+addopts = "--strict-config --strict-markers --cov=rnds_data_lab --cov-report=term-missing --cov-report=xml --cov-fail-under=85"
+testpaths = ["tests"]
+timeout = 60
+markers = [
+  "integration: testes que percorrem o pipeline completo",
+  "network: testes opcionais que acessam fontes públicas",
+]
+
+[tool.coverage.run]
+branch = true
+source = ["rnds_data_lab"]
+
+[tool.coverage.report]
+exclude_lines = [
+  "pragma: no cover",
+  "if TYPE_CHECKING:",
+  "if __name__ == .__main__.:",
+]

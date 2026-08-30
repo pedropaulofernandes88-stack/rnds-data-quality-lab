@@ -1,0 +1,43 @@
+# Python and tooling
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.hypothesis/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+dist/
+build/
+*.egg-info/
+
+# Local data and generated artifacts
+data/raw/
+data/generated/
+data/quarantine/
+artifacts/
+*.duckdb
+*.duckdb.wal
+*.parquet
+
+# Secrets and credentials
+.env
+.env.*
+!.env.example
+*.pfx
+*.p12
+*.pem
+*.key
+*.jks
+
+# Local Codex helper (reversible keep-awake process)
+.codex-keep-awake.ps1
+
+# Editors and OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+

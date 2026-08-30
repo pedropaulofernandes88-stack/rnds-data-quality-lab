@@ -1,0 +1,74 @@
+schema_version: 1
+sources:
+  - id: rnds_public_indicators
+    name: Indicadores públicos da RNDS
+    url: https://dadosabertos.saude.gov.br/dataset/mgdi-rede-nacional-de-dados-em-saude-rnds
+    format: recursos públicos agregados
+    granularity: totais publicados por indicador; confirmar dimensões do recurso antes de análises comparativas
+    update_frequency: conforme atualização do Portal de Dados Abertos do SUS
+    license: Creative Commons Atribuição-SemDerivações 3.0 (conforme declarado no portal)
+    limitations:
+      - Não contém prontuários nem substitui acesso assistencial à RNDS.
+      - A licença SemDerivações exige confirmação com o Ministério da Saúde antes de redistribuir transformações.
+      - Não inferir granularidade temporal ou geográfica que não esteja documentada no recurso.
+    indicators:
+      - code: sdigi008
+        name: Total de registros na RNDS
+      - code: sdigi009
+        name: Total de Registros de Imunobiológicos Administrados (RIA)
+      - code: sdigi010
+        name: Total de Registros de Atendimento Clínico (RAC)
+      - code: sdigi011
+        name: Total de registros de atestados médico/odontológicos
+      - code: sdigi013
+        name: Total de registros de prescrição de medicamento
+      - code: sdigi014
+        name: Total de registros de exames laboratoriais (REL)
+      - code: sdigi015
+        name: Total de registros de informações de regulação assistencial (RIRA)
+
+  - id: sinan_dengue
+    name: Sinan/Dengue
+    url: https://dadosabertos.saude.gov.br/dataset/arboviroses-dengue
+    format: API e arquivos CSV/JSON/XML anuais comprimidos
+    granularity: notificação individual; agregar por município de residência e semana epidemiológica
+    update_frequency: semanal; anos recentes podem ser revisados
+    license: Creative Commons Atribuição-SemDerivações 3.0 (conforme declarado no portal)
+    limitations:
+      - Não versionar microdados no repositório público.
+      - Bases históricas e recentes podem divergir por revisões e congelamentos anuais.
+      - Para incidência, o portal recomenda usar o local de residência.
+
+  - id: cnes_establishments
+    name: CNES - Cadastro Nacional de Estabelecimentos de Saúde
+    url: https://dadosabertos.saude.gov.br/dataset/cnes-cadastro-nacional-de-estabelecimentos-de-saude
+    format: API, CSV, JSON e XML
+    granularity: estabelecimento de saúde (CNES)
+    update_frequency: diária
+    license: Creative Commons Atribuição-SemDerivações 3.0 (conforme declarado no portal)
+    limitations:
+      - É cadastro administrativo; não mede utilização ou qualidade assistencial.
+      - Tratar o CNES como texto para preservar zeros à esquerda.
+      - A qualidade depende das atualizações enviadas pelos gestores locais.
+
+  - id: ibge_population_2025
+    name: Estimativas da População 2025 - IBGE
+    url: https://ftp.ibge.gov.br/Estimativas_de_Populacao/Estimativas_2025/POP2025_20260828.xls
+    format: XLS
+    granularity: município, UF e Brasil; referência em 1º de julho de 2025
+    update_frequency: anual, com possíveis retificações
+    license: Dados públicos do IBGE; atribuir a fonte e conferir termos vigentes antes de redistribuir
+    limitations:
+      - Estimativa populacional não é contagem censitária.
+      - Comparações temporais devem considerar revisões metodológicas e territoriais.
+
+  - id: ibge_municipal_mesh_2025
+    name: Malha Municipal Digital 2025 - IBGE
+    url: https://www.ibge.gov.br/geociencias/organizacao-do-territorio/malhas-territoriais/15774-malhas.html
+    format: ZIP/Shapefile; SIRGAS 2000, coordenadas geográficas e UTF-8
+    granularity: polígono municipal
+    update_frequency: anual
+    license: Consultar a documentação técnica e legal da edição utilizada; atribuir IBGE
+    limitations:
+      - É referência cartográfica, não definição legal de divisas.
+      - Baixar por UF e simplificar derivados; não baixar a malha nacional em CI.

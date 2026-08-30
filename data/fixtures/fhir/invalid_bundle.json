@@ -1,0 +1,8 @@
+{
+  "resourceType": "Bundle",
+  "id": "bundle-invalid-fixture",
+  "type": "collection",
+  "entry": [
+    {"fullUrl":"urn:uuid:patient-invalid","resource":{"resourceType":"Patient","id":"patient-invalid","meta":{"tag":[{"system":"https://rnds.saude.gov.br/tags/data-origin","code":"SYNTHETIC"}]},"identifier":[{"value":"proibido"}]}}
+  ]
+}

@@ -1,0 +1,65 @@
+contract_version: "1.1.0"
+purpose: "Mapeamento demonstrativo de recursos FHIR R4 sintéticos para modelos RNDS."
+rnds_status: "Referência técnica; não implica integração, homologação ou certificação."
+source:
+  name: "Gerador interno determinístico"
+  license: "MIT"
+  version: "0.1.0"
+  checksum: "Gerado em tempo de execução com semente explícita"
+  granularity: "Eventos FHIR sintéticos"
+  limitations:
+    - "Não contém pessoas ou atendimentos reais."
+    - "Não deve ser usado para decisão clínica ou assistencial."
+  extraction_date: "Não aplicável; geração local determinística"
+data_classification: "Sintético"
+tag_systems:
+  synthetic: "https://rnds.saude.gov.br/tags/data-origin"
+  model: "https://rnds.saude.gov.br/model"
+synthetic_extensions:
+  federative_unit:
+    url: "https://example.org/fhir/StructureDefinition/synthetic-federative-unit"
+    type: "valueCode"
+    description: "UF sintética entre as 27 UFs, escolhida deterministicamente a partir da semente."
+  wait_hours:
+    url: "https://example.org/fhir/StructureDefinition/synthetic-wait-hours"
+    type: "valueInteger"
+    description: "Espera simulada de ServiceRequest; não corresponde a regulação real."
+  completed_at:
+    url: "https://example.org/fhir/StructureDefinition/synthetic-completed-at"
+    type: "valueDateTime"
+    description: "Momento simulado de conclusão de ServiceRequest."
+models:
+  RAC: [Encounter, Condition]
+  REL: [Observation]
+  RIA: [Immunization]
+  RIRA: [ServiceRequest]
+  RPM:
+    resources: [MedicationRequest]
+    status: "Mapeamento FHIR R4 demonstrativo e sintético; não é um perfil RNDS homologado."
+    official_model: "Registro de Prescrição de Medicamentos (RPM)"
+    official_sources:
+      - "https://rnds-guia.saude.gov.br/docs/rpm/objetivo-rpm/"
+      - "https://rnds-guia.saude.gov.br/docs/rpm/mi-rpm/"
+      - "https://www.gov.br/saude/pt-br/composicao/seidigi/rnds/legislacao/legislacao"
+    fhir_r4_resource: "https://hl7.org/fhir/R4/medicationrequest.html"
+    field_mapping:
+      identification: "MedicationRequest.subject -> Patient sintético sem identificadores nacionais ou dados demográficos identificáveis"
+      prescription_datetime: "MedicationRequest.authoredOn"
+      prescriber_context: "MedicationRequest.requester -> Organization sintética; não representa profissional real"
+      coded_medication: "MedicationRequest.medicationCodeableConcept.coding (sistema e código sintéticos)"
+      administration_route: "MedicationRequest.dosageInstruction.route.coding"
+      structured_dose: "MedicationRequest.dosageInstruction.doseAndRate.doseQuantity e timing.repeat"
+      dispensed_quantity: "MedicationRequest.dispenseRequest.quantity"
+      treatment_window: "MedicationRequest.dispenseRequest.validityPeriod e expectedSupplyDuration"
+    exclusions:
+      - "Não usa identificador, nome, endereço, telecomunicação ou texto livre."
+      - "Não reproduz códigos, medicamentos, prescritores ou dispensações reais."
+      - "Não representa o fluxo de prescrição controlada, dispensação ou integração da RNDS."
+  PROVENANCE: [Provenance]
+synthetic_variation:
+  geography: "Todas as 27 UFs; sem endereço, município ou geolocalização."
+  demographics: "BirthDate por faixa etária e gender administrativo FHIR; sem nome ou identificador."
+  clinical: "Códigos CID-10 e LOINC sintéticos, com valor e unidade coerentes por exame."
+  regulation: "Classe/tipo de encontro, prioridade e serviço regulado variam por semente."
+  performers: "Organization sintética referencia execução de Observation e Immunization."
+  medication_prescription: "MedicationRequest varia código, via, dose, frequência, quantidade, repetições e janela de vigência por semente; todos os valores são sintéticos e codificados."

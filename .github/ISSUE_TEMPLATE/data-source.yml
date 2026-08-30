@@ -1,0 +1,35 @@
+name: Propor fonte pública
+description: Avalie uma nova fonte sem anexar o conjunto de dados.
+title: "[Fonte]: "
+labels: [data-source, governance]
+body:
+  - type: dropdown
+    id: classification
+    attributes:
+      label: Classificação
+      options:
+        - PUBLIC_AGGREGATE
+        - SYNTHETIC
+    validations:
+      required: true
+  - type: input
+    id: official_url
+    attributes:
+      label: URL oficial
+    validations:
+      required: true
+  - type: textarea
+    id: provenance
+    attributes:
+      label: Proveniência
+      description: Informe custodiante, licença, versão, granularidade, atualização e limitações.
+    validations:
+      required: true
+  - type: checkboxes
+    attributes:
+      label: Elegibilidade
+      options:
+        - label: A proposta não inclui microdados pessoais, registros clínicos nem credenciais.
+          required: true
+        - label: Li os termos da fonte e documentei restrições de redistribuição.
+          required: true

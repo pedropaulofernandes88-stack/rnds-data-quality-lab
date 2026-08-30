@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Bundle FHIR R4 sintético para o RNDS Data Quality Lab",
+  "description": "Contrato estrutural de demonstração. O mapeamento MedicationRequest -> RPM é sintético e não implica homologação RNDS.",
+  "type": "object",
+  "required": ["resourceType", "id", "type", "entry"],
+  "properties": {
+    "resourceType": {"const": "Bundle"},
+    "id": {"type": "string", "minLength": 1},
+    "type": {"const": "collection"},
+    "meta": {
+      "type": "object",
+      "properties": {
+        "tag": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "system": {"type": "string", "maxLength": 200},
+              "code": {"type": "string", "maxLength": 100},
+              "display": {"type": "string", "maxLength": 120}
+            }
+          }
+        }
+      }
+    },
+    "timestamp": {"type": "string", "format": "date-time"},
+    "entry": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["fullUrl", "resource"],
+        "properties": {
+          "fullUrl": {"type": "string", "pattern": "^urn:uuid:"},
+          "resource": {
+            "type": "object",
+            "required": ["resourceType", "id", "meta"],
+            "properties": {
+            "resourceType": {"type": "string"},
+            "id": {"type": "string", "minLength": 1},
+            "meta": {"type": "object"}
+            },
+            "allOf": [
+              {
+                "if": {"properties": {"resourceType": {"const": "MedicationRequest"}}},
+                "then": {
+                  "required": [
+                    "status",
+                    "intent",
+                    "medicationCodeableConcept",
+                    "subject",
+                    "authoredOn",
+                    "requester",
+                    "dispenseRequest"
+                  ],
+                  "properties": {
+                    "status": {"const": "active"},
+                    "intent": {"const": "order"},
+                    "authoredOn": {"type": "string", "format": "date-time"},
+                    "medicationCodeableConcept": {
+                      "type": "object",
+                      "required": ["coding"],
+                      "properties": {
+                        "coding": {
+                          "type": "array",
+                          "minItems": 1,
+                          "items": {
+                            "type": "object",
+                            "required": ["system", "code"],
+                            "properties": {
+                              "system": {"type": "string", "minLength": 1},
+                              "code": {"type": "string", "minLength": 1}
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "subject": {
+                      "type": "object",
+                      "required": ["reference"],
+                      "properties": {"reference": {"type": "string", "pattern": "^Patient/"}}
+                    },
+                    "requester": {
+                      "type": "object",
+                      "required": ["reference"],
+                      "properties": {"reference": {"type": "string", "pattern": "^Organization/"}}
+                    },
+                    "dispenseRequest": {
+                      "type": "object",
+                      "required": ["validityPeriod", "quantity", "expectedSupplyDuration"]
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,31 @@
+name: Relatar falha
+description: Informe um comportamento reproduzível sem incluir dados sensíveis.
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: checkboxes
+    attributes:
+      label: Segurança da informação
+      options:
+        - label: Confirmo que não incluí dados pessoais, clínicos, credenciais ou payloads reais.
+          required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Comportamento observado
+      description: Use apenas fixtures sintéticas mínimas ou hashes/metadados.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reprodução
+      description: Informe comando, seed, versão e saída redigida.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Versão/commit
+    validations:
+      required: true

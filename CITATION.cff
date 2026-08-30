@@ -1,0 +1,55 @@
+cff-version: 1.2.0
+message: "Se este laboratório for útil em seu trabalho, cite-o conforme abaixo."
+title: "RNDS Data Quality Lab"
+abstract: >-
+  Laboratório reprodutível de engenharia de dados para geração, validação,
+  proveniência e agregação em lote de recursos FHIR R4 inteiramente sintéticos,
+  incluindo um mapeamento demonstrativo de MedicationRequest ao domínio RPM,
+  com alinhamento conceitual à documentação pública da RNDS. Não acessa a
+  RNDS, não contém dados de pacientes e não demonstra valor clínico.
+type: software
+license: MIT
+version: 0.1.0
+date-released: 2026-08-29
+repository-code: "https://github.com/pedropaulofernandes88-stack/rnds-data-quality-lab"
+url: "https://github.com/pedropaulofernandes88-stack/rnds-data-quality-lab"
+keywords:
+  - FHIR R4
+  - RNDS
+  - data quality
+  - synthetic data
+  - reproducibility
+  - health data engineering
+  - MedicationRequest
+  - RPM
+authors:
+  - family-names: Fernandes
+    given-names: Pedro Paulo
+    alias: pedropaulofernandes88-stack
+references:
+  - type: standard
+    title: "FHIR Release 4"
+    publisher: "HL7 International"
+    url: "https://hl7.org/fhir/R4/"
+  - type: webpage
+    title: "Guia de Implementação da RNDS - FHIR v4.0.1"
+    publisher: "Ministério da Saúde do Brasil"
+    url: "https://rnds-fhir.saude.gov.br/"
+  - type: webpage
+    title: "Registro de Prescrição de Medicamentos (RPM)"
+    publisher: "Ministério da Saúde do Brasil"
+    url: "https://rnds-guia.saude.gov.br/docs/rpm/mi-rpm/"
+  - type: standard
+    title: "FHIR R4 MedicationRequest"
+    publisher: "HL7 International"
+    url: "https://hl7.org/fhir/R4/medicationrequest.html"
+  - type: article
+    authors:
+      - family-names: Wilkinson
+        given-names: Mark D.
+    title: "The FAIR Guiding Principles for scientific data management and stewardship"
+    journal: "Scientific Data"
+    volume: "3"
+    article-number: "160018"
+    year: 2016
+    doi: "10.1038/sdata.2016.18"
