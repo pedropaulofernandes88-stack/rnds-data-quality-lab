@@ -10,10 +10,10 @@ Não extrapole dados sintéticos para a RNDS, pessoas, serviços ou valor clíni
 | Campo | Valor observado |
 | --- | --- |
 | Data/hora UTC | `2026-08-30T02:25:18Z` |
-| Commit Git | implementação validada em `86d70e50a9945ecb63296ad6ed9f793f25252e42`; este registro é o commit documental imediatamente seguinte |
+| Commit Git | implementação em `86d70e50a9945ecb63296ad6ed9f793f25252e42`; runtime/lock final validados em `35703e5d3af61163b18b8d29fac2e3a4aca73f38`; este registro é o commit documental seguinte |
 | Versão do protocolo/contrato | protocolo documentado nesta revisão; `rnds-lab-contract/1.0.0` |
 | Python / plataforma | CPython `3.11.15` e `3.12.13`; Windows 11 `10.0.26200`; Intel i7-1255U, 10 núcleos/12 processadores lógicos, 31,7 GiB RAM |
-| `uv.lock` (SHA-256) | `b942ef07054a3f54dc22bb1f0dce759a88ec45f9bcab3b0aa3f1ae9b3815ac13` |
+| `uv.lock` (SHA-256) | `bbc94bc7a9410a792e77575ac573ac03116b30f32619ae636364b7e2d1a89b6c` |
 | Banco local/versão DuckDB | `data/generated/rnds_lab.duckdb` (ignorado); DuckDB `1.5.5` |
 | Classificação dos dados | `SYNTHETIC` no lakehouse assistencial demonstrativo e `PUBLIC_AGGREGATE` em tabela separada; os indicadores públicos não entram em `academic-report` |
 
@@ -55,6 +55,8 @@ A primeira checagem cruzada em Python 3.12 encontrou NumPy 2.5 incompatível
 com o alvo MyPy 3.11 e tipos YAML inconsistentes entre runtimes. A faixa foi
 fixada em NumPy `<2.5`, `types-PyYAML` foi declarado e toda a matriz foi
 reexecutada com êxito; as falhas intermediárias não foram ocultadas.
+O lock final também atualiza Plotly `7.0.0`, Rich `15.0.0` e MyPy `2.3.1`;
+CI nos dois runtimes e smoke assertivo das APIs efetivamente usadas passaram.
 
 ## Indicadores públicos
 
