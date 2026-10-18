@@ -31,7 +31,7 @@ dependencies = [
   # alvo MyPy 3.11 e suporta ambos os runtimes da matriz de CI.
   "numpy>=2,<2.5",
   "plotly>=6,<8",
-  "polars>=1.33,<2",
+  "polars>=1.33,<3",
   "pyarrow>=21,<30",
   "pydantic>=2.11,<3",
   "pytz>=2025.2",
